@@ -1,5 +1,9 @@
 import { createCalendarEvent } from './_gcal.js';
 
+export async function onRequestGet() {
+  return new Response('ok');
+}
+
 async function sendTelegram(token, chatId, text) {
   await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: 'POST',
