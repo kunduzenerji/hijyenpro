@@ -1031,6 +1031,35 @@
               <option>Birden Fazla Hizmet</option>
             </select>
           </div>
+          <div class="form-g">
+            <label>İlçe</label>
+            <select id="fIlce">
+              <option value="" disabled selected>İlçe seçin...</option>
+              <option>Acıpayam</option>
+              <option>Babadağ</option>
+              <option>Baklan</option>
+              <option>Bekilli</option>
+              <option>Beyağaç</option>
+              <option>Bozkurt</option>
+              <option>Buldan</option>
+              <option>Çal</option>
+              <option>Çameli</option>
+              <option>Çardak</option>
+              <option>Çivril</option>
+              <option>Güney</option>
+              <option>Honaz</option>
+              <option>Kale</option>
+              <option>Merkezefendi</option>
+              <option>Pamukkale</option>
+              <option>Sarayköy</option>
+              <option>Serinhisar</option>
+              <option>Tavas</option>
+            </select>
+          </div>
+          <div class="form-g">
+            <label>Açık Adres</label>
+            <input type="text" id="fAdres" placeholder="Mahalle, sokak, bina no...">
+          </div>
           <div class="cal-btn-row">
             <button class="cal-back-btn" id="toStep2Back">← Geri</button>
             <button class="form-submit" id="submitBtn" style="flex:1;" type="button">Randevu Talebini Gönder</button>
@@ -1328,8 +1357,10 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
   const name    = document.getElementById('fName').value.trim();
   const phone   = document.getElementById('fPhone').value.trim();
   const service = document.getElementById('fService').value;
+  const ilce    = document.getElementById('fIlce').value;
+  const adres   = document.getElementById('fAdres').value.trim();
 
-  if (!name || !phone || !service) {
+  if (!name || !phone || !service || !ilce || !adres) {
     alert('Lütfen tüm alanları doldurun.');
     return;
   }
@@ -1341,7 +1372,7 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     const res  = await fetch('/api/book', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ name, phone, service, date: toDateStr(selectedDate), time: selectedTime })
+      body:    JSON.stringify({ name, phone, service, ilce, adres, date: toDateStr(selectedDate), time: selectedTime })
     });
     const data = await res.json();
 

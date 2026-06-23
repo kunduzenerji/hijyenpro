@@ -3,6 +3,8 @@ CREATE TABLE IF NOT EXISTS reservations (
   name           TEXT    NOT NULL,
   phone          TEXT    NOT NULL,
   service        TEXT    NOT NULL,
+  ilce           TEXT    NOT NULL,
+  adres          TEXT    NOT NULL,
   date           TEXT    NOT NULL,
   time           TEXT    NOT NULL,
   duration_hours INTEGER,
