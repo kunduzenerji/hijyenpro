@@ -1348,7 +1348,6 @@ document.getElementById('submitBtn').addEventListener('click', async function() 
     if (data.success) {
       this.textContent = '✓ Talebiniz alındı!';
       this.style.background = 'var(--teal)';
-      setTimeout(() => window.open(data.waUrl, '_blank'), 500);
     } else {
       this.textContent = 'Hata oluştu, tekrar deneyin.';
       this.style.background = '#e53e3e';
