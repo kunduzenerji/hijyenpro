@@ -57,15 +57,15 @@ export async function onRequestPost({ request, env }) {
       ).bind(hours, id).run();
 
       // Create Google Calendar event
+      let calMsg = '📅 Google Takvim'e eklendi.';
       try {
         await createCalendarEvent(env, { ...row, id }, hours);
       } catch (gcalErr) {
-        console.error('Google Calendar event creation failed:', gcalErr.message);
-        // non-fatal — booking is still confirmed in DB
+        calMsg = `⚠️ Takvim hatası: ${gcalErr.message}`;
       }
 
       await sendTelegram(env.TELEGRAM_TOKEN, chatId,
-        `✅ *Rezervasyon #${id} onaylandı!*\n👤 ${row.name}\n📅 ${row.date} · ${row.time} (${hours} saat)\n🛋️ ${row.service}\n📅 Google Takvim'e eklendi.`
+        `✅ *Rezervasyon #${id} onaylandı!*\n👤 ${row.name}\n📅 ${row.date} · ${row.time} (${hours} saat)\n🛋️ ${row.service}\n${calMsg}`
       );
       return new Response('ok');
     }
