@@ -57,7 +57,7 @@ export async function onRequestPost({ request, env }) {
       ).bind(hours, id).run();
 
       // Create Google Calendar event
-      let calMsg = '📅 Google Takvim'e eklendi.';
+      let calMsg = '📅 Google Takvime eklendi.';
       try {
         await createCalendarEvent(env, { ...row, id }, hours);
       } catch (gcalErr) {
