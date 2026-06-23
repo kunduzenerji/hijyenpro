@@ -66,7 +66,7 @@ export async function createCalendarEvent(env, reservation, durationHours) {
 
   const event = {
     summary:     `${reservation.service} — ${reservation.name}`,
-    description: `📞 ${reservation.phone}\nRezarvasyon #${reservation.id}`,
+    description: `📞 ${reservation.phone}\n📍 ${reservation.ilce} / ${reservation.adres}\nRezarvasyon #${reservation.id}`,
     start: { dateTime: toISO(start), timeZone: 'Europe/Istanbul' },
     end:   { dateTime: toISO(end),   timeZone: 'Europe/Istanbul' }
   };
