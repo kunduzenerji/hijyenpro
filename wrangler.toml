@@ -1,0 +1,15 @@
+name = "hijyenpro"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hijyenpro-db"
+database_id = "00e7eaa7-2afd-43a7-bbfc-1ae3cc79ed5b"
+
+# Secrets — add these via Cloudflare dashboard or:
+#   wrangler pages secret put TELEGRAM_TOKEN
+#   wrangler pages secret put TELEGRAM_CHAT_ID
+#   wrangler pages secret put COMPANY_PHONE
+#   wrangler pages secret put GOOGLE_SERVICE_ACCOUNT_JSON
+#   wrangler pages secret put GOOGLE_CALENDAR_ID

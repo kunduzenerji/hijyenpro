@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hijyen Pro | Profesyonel Döşeme Yıkama</title>
+  <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F4F7FB;
+      --white: #FFFFFF;
+      --navy: #2E5B89;
+      --navy-hover: #245078;
+      --teal: #6DC848;
+      --teal-dark: #5AB038;
+      --teal-pale: #EAF7D8;
+      --text: #1A1A1A;
+      --text-muted: #5C6B77;
+      --border: #D9E4EF;
+      --max: 1200px;
+      --sp: 96px;
+      --font-d: 'Montserrat', sans-serif;
+      --font-b: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-b); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(46,91,137,0.97);
+      backdrop-filter: blur(14px);
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.18); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; max-width: var(--max); margin: 0 auto; padding: 0 24px;
+    }
+    .nav-brand {
+      display: flex; align-items: baseline; gap: 10px; text-decoration: none;
+    }
+    .nav-brand-name {
+      font-family: var(--font-d); font-weight: 800; font-size: 26px;
+      letter-spacing: -.5px; line-height: 1;
+    }
+    .nav-brand-name .b { color: #7BB8F0; }
+    .nav-brand-name .g { color: var(--teal); }
+    .nav-brand-motto {
+      font-family: var(--font-b); font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,.72); letter-spacing: .2px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 34px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,.72); font-size: 14px;
+      font-weight: 500; letter-spacing: .2px; transition: color .2s;
+    }
+    .nav-links a:hover { color: white; }
+    .nav-cta {
+      background: var(--teal) !important; color: white !important;
+      padding: 9px 22px; border-radius: 8px; font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--teal-dark) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 22px; height: 2px; background: white; border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: #FFFFFF;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden; padding-top: 68px;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: var(--max); margin: 0 auto; padding: 80px 24px;
+      width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+    }
+    .hero-content { max-width: 560px; }
+    .hero-logo-side {
+      display: flex; justify-content: center;
+      margin-top: 50px; /* badge height (~28px) + its margin-bottom (22px) = 50px, aligns top with h1 */
+    }
+    .hero-logo-side img {
+      width: 100%; max-width: 420px; height: auto; object-fit: contain;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(109,200,72,.12); border: 1px solid rgba(109,200,72,.35);
+      color: #4A9A28; font-size: 12px; font-weight: 700;
+      padding: 5px 14px; border-radius: 50px;
+      text-transform: uppercase; letter-spacing: .8px; margin-bottom: 22px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal); animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+    h1.hero-h {
+      font-family: var(--font-d); font-size: clamp(28px, 3.6vw, 48px);
+      font-weight: 900; color: var(--navy); line-height: 1.15;
+      letter-spacing: -1px; margin-bottom: 20px;
+    }
+    h1.hero-h em { font-style: normal; color: var(--teal); }
+    .hero-p {
+      font-size: 17px; color: var(--text-muted); line-height: 1.72;
+      margin-bottom: 38px; max-width: 480px;
+    }
+    .hero-btns { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .btn-pri {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal); color: white; text-decoration: none;
+      padding: 14px 26px; border-radius: 10px;
+      font-weight: 600; font-size: 15px; border: none; cursor: pointer;
+      transition: background .2s, transform .18s;
+    }
+    .btn-pri:hover { background: var(--teal-dark); transform: translateY(-2px); }
+    .btn-sec {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--navy);
+      text-decoration: none; padding: 14px 26px; border-radius: 10px;
+      font-weight: 500; font-size: 15px;
+      border: 1.5px solid rgba(46,91,137,.25); transition: border-color .2s, color .2s;
+    }
+    .btn-sec:hover { border-color: var(--navy); color: var(--navy); }
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 48px;
+      padding-top: 36px; border-top: 1px solid rgba(46,91,137,.12);
+    }
+    .stat-n { font-family: var(--font-d); font-size: 28px; font-weight: 900; color: var(--navy); }
+    .stat-l { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── SERVICES — 2×2 FULL SCREEN ── */
+    .services {
+      min-height: 100vh;
+      background: var(--white);
+      display: flex; flex-direction: column;
+      padding: 0;
+    }
+    .services-header {
+      padding: 56px 24px 40px;
+      max-width: var(--max); margin: 0 auto; width: 100%;
+    }
+    .srv-grid-2x2 {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+    .srv-card-big {
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 48px 52px;
+      border: 1px solid var(--border);
+      transition: background .25s;
+      min-height: 280px;
+    }
+    .srv-card-big {
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    /* dark overlay so text is always readable */
+    .srv-card-big::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,20,35,.62) 0%, rgba(10,20,35,.38) 100%);
+      transition: background .3s;
+      z-index: 0;
+    }
+    .srv-card-big:hover::before {
+      background: linear-gradient(135deg, rgba(10,20,35,.72) 0%, rgba(10,20,35,.50) 100%);
+    }
+    .srv-card-big > * { position: relative; z-index: 1; }
+
+    .srv-card-big .srv-name-big {
+      font-family: var(--font-d); font-weight: 800; font-size: clamp(22px, 3vw, 34px);
+      margin-bottom: 10px; line-height: 1.15; color: white;
+    }
+    .srv-card-big .srv-desc-big {
+      font-size: 15px; line-height: 1.65; max-width: 360px; color: rgba(255,255,255,.82);
+    }
+
+    /* ── SECTION SHARED ── */
+    .eyebrow {
+      font-family: var(--font-d); font-size: 11px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2.5px;
+      color: var(--teal); margin-bottom: 10px;
+    }
+    .sec-h {
+      font-family: var(--font-d); font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800; color: var(--navy);
+      line-height: 1.12; letter-spacing: -.5px;
+    }
+    .sec-p { font-size: 16px; color: var(--text-muted); margin-top: 12px; line-height: 1.72; max-width: 500px; }
+    .sec-head { margin-bottom: 52px; }
+
+    /* ── PROCESS ── */
+    .process { padding: var(--sp) 0; background: var(--white); position: relative; overflow: hidden; }
+    .process .sec-h { color: var(--navy); }
+    .steps { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 52px; }
+    .step {
+      background: var(--bg); border: 1px solid var(--border);
+      padding: 32px 22px; position: relative;
+    }
+    .step:not(:last-child) { border-right: none; }
+    .step:first-child { border-radius: 14px 0 0 14px; }
+    .step:last-child  { border-radius: 0 14px 14px 0; }
+    .step-n {
+      font-family: var(--font-d); font-size: 46px; font-weight: 900;
+      color: var(--teal); line-height: 1; margin-bottom: 14px;
+    }
+    .step-t { font-family: var(--font-d); font-weight: 700; font-size: 15px; color: var(--navy); margin-bottom: 9px; }
+    .step-d { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── PORTFOLIO ── */
+    .portfolio { padding: var(--sp) 0; background: var(--bg); }
+    .port-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+    .port-tab {
+      padding: 8px 20px; border-radius: 8px; font-size: 13px;
+      font-weight: 600; cursor: pointer; background: transparent;
+      border: 1.5px solid var(--border); color: var(--text-muted);
+      transition: all .18s; font-family: var(--font-b);
+    }
+    .port-tab.active, .port-tab:hover { background: var(--navy); border-color: var(--navy); color: white; }
+    .port-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+    .port-card {
+      background: white; border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .port-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.1); transform: translateY(-3px); }
+    .port-img {
+      position: relative; height: 195px; overflow: hidden;
+      cursor: col-resize; user-select: none;
+    }
+    .pi-before {
+      position: absolute; inset: 0;
+      background: linear-gradient(155deg,#2C2C2A 0%,#3D3A35 45%,#1E1D18 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pi-after {
+      position: absolute; inset: 0; clip-path: inset(0 0 0 50%);
+      background: linear-gradient(155deg,#E6F5EE 0%,#D5EDE6 45%,#C4E2D9 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pi-line { position: absolute; top:0; bottom:0; left:50%; width:2px; background:white; transform:translateX(-50%); pointer-events:none; }
+    .pi-knob {
+      position: absolute; top:50%; left:50%;
+      transform: translate(-50%,-50%);
+      width: 30px; height: 30px; border-radius: 50%;
+      background: white; box-shadow: 0 2px 8px rgba(0,0,0,.22);
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+    .pi-lbl {
+      position: absolute; top: 7px;
+      font-family: var(--font-d); font-size: 9px; font-weight: 800;
+      letter-spacing: .6px; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 3px;
+    }
+    .pll { left: 7px; background: rgba(0,0,0,.55); color: white; }
+    .plr { right: 7px; background: var(--teal); color: white; }
+    .port-info { padding: 12px 15px; }
+    .port-cat { font-size: 10px; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 3px; }
+    .port-item { font-family: var(--font-d); font-weight: 700; font-size: 14px; color: var(--navy); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: var(--sp) 0; background: var(--white); }
+    .test-slider-outer {
+      position: relative;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .test-slider-viewport { overflow: hidden; flex: 1; }
+    .test-track {
+      display: flex; gap: 22px;
+      transition: transform .42s cubic-bezier(.4,0,.2,1);
+    }
+    .test-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px; position: relative;
+      flex: 0 0 calc((100% - 44px) / 3);
+    }
+    .test-card.dark { background: var(--navy); border-color: var(--navy); }
+    .qmark { font-family: Georgia, serif; font-size: 60px; line-height: .6; color: var(--teal); opacity: .4; display: block; margin-bottom: 10px; }
+    .stars { display: flex; gap: 3px; margin-bottom: 13px; }
+    .stars svg { width: 15px; height: 15px; fill: #FFBA08; }
+    .test-text { font-size: 15px; line-height: 1.72; color: var(--text); margin-bottom: 20px; }
+    .test-card.dark .test-text { color: rgba(255,255,255,.78); }
+    .test-author { display: flex; align-items: center; gap: 11px; }
+    .t-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--teal-pale); display: flex; align-items: center;
+      justify-content: center; font-family: var(--font-d);
+      font-weight: 800; font-size: 13px; color: #4A9A28; flex-shrink: 0;
+    }
+    .test-card.dark .t-av { background: rgba(109,200,72,.2); color: var(--teal); }
+    .t-name { font-family: var(--font-d); font-weight: 700; font-size: 14px; color: var(--navy); }
+    .test-card.dark .t-name { color: white; }
+    .t-loc { font-size: 12px; color: var(--text-muted); }
+    .test-card.dark .t-loc { color: rgba(255,255,255,.45); }
+    .test-arrow {
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+      border: 1.5px solid var(--border); background: white;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--navy); transition: all .18s;
+      box-shadow: 0 2px 10px rgba(0,0,0,.07);
+    }
+    .test-arrow:hover { background: var(--navy); border-color: var(--navy); color: white; }
+    .test-arrow:disabled { opacity: .3; cursor: not-allowed; }
+    .test-arrow:disabled:hover { background: white; border-color: var(--border); color: var(--navy); }
+
+    /* ── BOOKING — CALENDAR ── */
+    .booking { padding: var(--sp) 0; background: var(--bg); }
+    .book-wrap { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start; }
+    .book-left h2 {
+      font-family: var(--font-d); font-size: clamp(26px,4vw,38px);
+      font-weight: 800; color: var(--navy); line-height: 1.18;
+      letter-spacing: -.4px; margin-bottom: 14px;
+    }
+    .book-left p { font-size: 16px; color: var(--text-muted); line-height: 1.72; margin-bottom: 30px; }
+    .feat-list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+    .feat-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--text); }
+    .feat-chk {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--teal-pale); display: flex;
+      align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .feat-chk svg { width: 13px; height: 13px; stroke: #4A9A28; }
+
+    /* Calendar card */
+    .book-card {
+      background: white; border-radius: 20px; padding: 32px;
+      border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(0,0,0,.06);
+    }
+
+    /* Steps indicator */
+    .cal-steps {
+      display: flex; align-items: center; gap: 0; margin-bottom: 28px;
+    }
+    .cal-step {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-d); font-size: 12px; font-weight: 700;
+      color: var(--text-muted); letter-spacing: .3px;
+    }
+    .cal-step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; flex-shrink: 0;
+      transition: all .25s;
+    }
+    .cal-step.active .cal-step-num { background: var(--navy); border-color: var(--navy); color: white; }
+    .cal-step.done .cal-step-num { background: var(--teal); border-color: var(--teal); color: white; }
+    .cal-step.active { color: var(--navy); }
+    .cal-step.done { color: var(--teal-dark); }
+    .cal-step-line { flex: 1; height: 2px; background: var(--border); margin: 0 10px; transition: background .25s; }
+    .cal-step-line.done { background: var(--teal); }
+
+    /* Calendar */
+    .cal-panel { display: none; }
+    .cal-panel.active { display: block; }
+
+    .cal-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .cal-nav-btn {
+      background: none; border: 1.5px solid var(--border);
+      border-radius: 8px; width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--navy); transition: all .18s;
+    }
+    .cal-nav-btn:hover { background: var(--navy); border-color: var(--navy); color: white; }
+    .cal-month-label {
+      font-family: var(--font-d); font-weight: 800; font-size: 16px; color: var(--navy);
+    }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+    }
+    .cal-dow {
+      text-align: center; font-family: var(--font-d); font-size: 10px;
+      font-weight: 700; color: var(--text-muted); letter-spacing: .5px;
+      text-transform: uppercase; padding: 6px 0;
+    }
+    .cal-day {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      border-radius: 8px; font-size: 13px; font-weight: 600;
+      cursor: default; color: var(--text-muted);
+      transition: all .18s;
+    }
+    .cal-day.available {
+      background: var(--teal-pale); color: #3A8020; cursor: pointer; font-weight: 700;
+    }
+    .cal-day.available:hover { background: var(--teal); color: white; }
+    .cal-day.selected { background: var(--navy) !important; color: white !important; }
+    .cal-day.empty { opacity: 0; pointer-events: none; }
+    .cal-day.past { opacity: .35; }
+    .cal-day.today { box-shadow: inset 0 0 0 1.5px var(--navy); }
+
+    /* Time slots */
+    .time-slots-title {
+      font-family: var(--font-d); font-weight: 700; font-size: 14px;
+      color: var(--navy); margin-bottom: 12px;
+    }
+    .time-slots {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+    .time-slot {
+      padding: 10px 6px; border: 1.5px solid var(--border); border-radius: 8px;
+      text-align: center; font-size: 12px; font-weight: 600; color: var(--navy);
+      cursor: pointer; transition: all .18s; background: var(--bg);
+    }
+    .time-slot:hover { border-color: var(--teal); background: var(--teal-pale); color: #3A8020; }
+    .time-slot.selected { background: var(--navy); border-color: var(--navy); color: white; }
+    .time-slot.unavailable { opacity: .35; cursor: not-allowed; pointer-events: none; }
+
+    .cal-selected-summary {
+      background: var(--teal-pale); border-radius: 10px; padding: 12px 16px;
+      margin-bottom: 20px; font-size: 13px; color: #3A8020; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* Contact form */
+    .form-g { margin-bottom: 16px; }
+    .form-g label {
+      display: block; font-size: 12px; font-weight: 700;
+      color: var(--navy); margin-bottom: 6px; letter-spacing: .15px; text-transform: uppercase;
+    }
+    .form-g input, .form-g select {
+      width: 100%; padding: 12px 15px;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      font-family: var(--font-b); font-size: 15px; color: var(--text);
+      background: var(--bg); outline: none;
+      -webkit-appearance: none; appearance: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-g input:focus, .form-g select:focus {
+      border-color: var(--teal); box-shadow: 0 0 0 3px rgba(109,200,72,.15);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-submit {
+      width: 100%; padding: 15px; background: var(--navy); color: white;
+      border: none; border-radius: 10px; font-family: var(--font-d);
+      font-weight: 700; font-size: 15px; cursor: pointer; letter-spacing: .2px;
+      transition: background .2s, transform .18s;
+    }
+    .form-submit:hover { background: var(--navy-hover); transform: translateY(-1px); }
+    .form-note { text-align: center; margin-top: 12px; font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .cal-btn-row { display: flex; gap: 10px; margin-top: 20px; }
+    .cal-back-btn {
+      padding: 12px 20px; background: transparent; border: 1.5px solid var(--border);
+      border-radius: 10px; font-family: var(--font-d); font-weight: 700;
+      font-size: 14px; color: var(--text-muted); cursor: pointer; transition: all .18s;
+    }
+    .cal-back-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .cal-next-btn {
+      flex: 1; padding: 12px 20px; background: var(--navy); border: none;
+      border-radius: 10px; font-family: var(--font-d); font-weight: 700;
+      font-size: 14px; color: white; cursor: pointer; transition: background .18s;
+    }
+    .cal-next-btn:hover { background: var(--navy-hover); }
+    .cal-next-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--navy); padding: 20px 0 14px; }
+    .footer-main {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.08); margin-bottom: 12px;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-brand { display: flex; align-items: baseline; gap: 10px; }
+    .footer-brand-name {
+      font-family: var(--font-d); font-weight: 800; font-size: 26px;
+      letter-spacing: -.5px; line-height: 1;
+    }
+    .footer-brand-name .b { color: #7BB8F0; }
+    .footer-brand-name .g { color: var(--teal); }
+    .footer-brand-motto {
+      font-family: var(--font-b); font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,.45); letter-spacing: .2px;
+    }
+    .footer-contact { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .footer-contact-title {
+      font-family: var(--font-d); font-weight: 700; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: rgba(255,255,255,.55);
+    }
+    .footer-contact a {
+      display: flex; align-items: center; gap: 8px;
+      color: rgba(255,255,255,.65); text-decoration: none; font-size: 14px;
+      transition: color .2s;
+    }
+    .footer-contact a:hover { color: white; }
+    .footer-contact svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .footer-bottom { display: flex; justify-content: center; }
+    .fcopy { font-size: 12px; color: rgba(255,255,255,.3); }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .port-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      :root { --sp: 68px; }
+      .hero-inner { padding: 60px 24px; grid-template-columns: 1fr; gap: 36px; }
+      .hero-logo-side { display: none; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .book-wrap { grid-template-columns: 1fr; gap: 36px; }
+      .form-row { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: repeat(2,1fr); }
+      .step:first-child { border-radius: 14px 0 0 0; }
+      .step:nth-child(2) { border-radius: 0 14px 0 0; border-right: 1px solid rgba(255,255,255,.08); }
+      .step:nth-child(3) { border-top: none; }
+      .step:last-child { border-radius: 0 0 14px 0; border-top: none; border-right: 1px solid rgba(255,255,255,.08); }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .srv-grid-2x2 { grid-template-columns: 1fr; grid-template-rows: repeat(4,auto); }
+      .srv-card-big { padding: 36px 28px; min-height: 220px; }
+    }
+    @media (max-width: 520px) {
+      .port-grid { grid-template-columns: repeat(2,1fr); }
+      .hero-stats { gap: 20px; }
+      .stat-n { font-size: 22px; }
+      .time-slots { grid-template-columns: repeat(2,1fr); }
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      display: none; position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+      background: var(--navy); padding: 20px 24px 28px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      flex-direction: column; gap: 6px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: rgba(255,255,255,.75); font-size: 15px;
+      font-weight: 500; padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07); transition: color .2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; color: var(--teal); font-weight: 700; }
+    .mobile-menu a:hover { color: white; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <div class="nav-brand-name"><span class="b">Hijyen</span><span class="g">Pro</span></div>
+      <div class="nav-brand-motto">temizlik bizim işimiz</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">Ana Sayfa</a></li>
+      <li><a href="#hizmetler">Hizmetler</a></li>
+      <li><a href="#calismalarmiz">Çalışmalarımız</a></li>
+      <li><a href="#yorumlar">Yorumlar</a></li>
+      <li><a href="#rezervasyon" class="nav-cta">Randevu Al</a></li>
+    </ul>
+    <div class="hamburger" id="ham">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mob">
+  <a href="#hero" onclick="closeMob()">Ana Sayfa</a>
+  <a href="#hizmetler" onclick="closeMob()">Hizmetler</a>
+  <a href="#calismalarmiz" onclick="closeMob()">Çalışmalarımız</a>
+  <a href="#yorumlar" onclick="closeMob()">Yorumlar</a>
+  <a href="#rezervasyon" onclick="closeMob()">→ Randevu Al</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Denizli &nbsp;·&nbsp; Yerinde Hizmet
+      </div>
+      <h1 class="hero-h">
+        Evinizdeki,<br>
+        <em>İş yerinizdeki,</em><br>
+        Tüm mobilyalar,<br>
+        <em>İlk günkü gibi temiz</em>
+      </h1>
+      <p class="hero-p">
+        Koltuk takımından araba koltuğuna, yataktan sandalyeye kadar
+        tüm döşemeli yüzeyler için yerinde, çevre dostu profesyonel yıkama.
+      </p>
+      <div class="hero-btns">
+        <a href="#rezervasyon" class="btn-pri">
+          Randevu Al
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="#calismalarmiz" class="btn-sec">
+          Önce–Sonra Gör
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-n">400+</div>
+          <div class="stat-l">Tamamlanan Hizmet</div>
+        </div>
+        <div>
+          <div class="stat-n">4.9 ★</div>
+          <div class="stat-l">Müşteri Puanı</div>
+        </div>
+        <div>
+          <div class="stat-n">4 Yıl</div>
+          <div class="stat-l">Sektör Deneyimi</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-logo-side">
+      <img src="images/hero.png" alt="HijyenPro Logo">
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SERVICES — 2×2 ── -->
+<section class="services" id="hizmetler">
+  <div class="services-header reveal">
+    <div class="eyebrow">Hizmetlerimiz</div>
+    <h2 class="sec-h">Neler Yıkıyoruz?</h2>
+  </div>
+  <div class="srv-grid-2x2">
+
+    <div class="srv-card-big reveal" style="background-image: url('images/koltuk.jpg');">
+      <div class="srv-name-big">Koltuk &amp; Oturma Takımı</div>
+      <p class="srv-desc-big">3'lü, 2'li, tekli ve L-köşe koltuk takımlarınızı leke, koku ve bakteri arındırarak yıkıyoruz.</p>
+    </div>
+
+    <div class="srv-card-big reveal" style="background-image: url('images/sandalye.jpg');">
+      <div class="srv-name-big">Sandalye &amp; Ofis</div>
+      <p class="srv-desc-big">Yemek odası, mutfak, ofis sandalyelerinde kumaş ile suni deri, deri yıkama ve temizleme. Evinizin ve iş yerinizin tüm temizliği bize emanet.</p>
+    </div>
+
+    <div class="srv-card-big reveal" style="background-image: url('images/yatak.jpg');">
+      <div class="srv-name-big">Yatak &amp; Baza Yıkama</div>
+      <p class="srv-desc-big">Yatak yüzeyi, başlık ve baza temizliği. Toz akarı, bakteri ve alerjen arındırma garantisi.</p>
+    </div>
+
+    <div class="srv-card-big reveal" style="background-image: url('images/araba.jpg');">
+      <div class="srv-name-big">Araç İçi Döşeme</div>
+      <p class="srv-desc-big">Araç koltukları, tavan ve döşeme yıkama, ozonlu koku arındırma dahil, yerinde hizmet.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section class="process">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Süreç</div>
+      <h2 class="sec-h">Nasıl Çalışıyoruz?</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n">1</div>
+        <div class="step-t">Randevu Alın</div>
+        <p class="step-d">Takvimden uygun gün ve saati seçin, bilgilerinizi bırakın.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">2</div>
+        <div class="step-t">Kapınıza Gelir</div>
+        <p class="step-d">Ekibimiz tüm ekipmanlarıyla birlikte randevu saatinde adresinizde.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">3</div>
+        <div class="step-t">Yerinde Yıkama</div>
+        <p class="step-d">Çevre dostu ürün ve buharlı sistemlerle derin temizlik. Mobilya taşınmaz.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">4</div>
+        <div class="step-t">Tertemiz &amp; Kuru</div>
+        <p class="step-d">2–4 saat içinde kurur, aynı gün kullanıma hazırdır. Memnuniyet garantisi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PORTFOLIO ── -->
+<section class="portfolio" id="calismalarmiz">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Çalışmalarımız</div>
+      <h2 class="sec-h">Gerçek Sonuçlar</h2>
+      <p class="sec-p">Kaydırarak önce–sonra farkını görün. Tüm görseller gerçek işlerden alınmıştır.</p>
+    </div>
+    <div class="port-tabs reveal">
+      <button class="port-tab active" data-filter="all">Tümü</button>
+      <button class="port-tab" data-filter="koltuk">Koltuk Takımı</button>
+      <button class="port-tab" data-filter="araba">Araba</button>
+      <button class="port-tab" data-filter="yatak">Yatak</button>
+    </div>
+    <div class="port-grid" id="portGrid">
+
+      <div class="port-card reveal" data-cat="koltuk">
+        <div class="port-img" data-slider>
+          <div class="pi-before" style="background: linear-gradient(155deg,#2C2C2A 0%,#3D3A35 45%,#1E1D18 100%);">
+            <span style="font-family:var(--font-d);font-size:9px;font-weight:700;letter-spacing:.8px;color:rgba(255,255,255,.28);text-transform:uppercase">Önce Fotoğrafı</span>
+          </div>
+          <div class="pi-after" style="background: url('images/koltuktakımı-sonrası.jpeg') center/cover no-repeat; clip-path: inset(0 0 0 50%);">
+          </div>
+          <div class="pi-line"></div>
+          <div class="pi-knob">
+            <svg fill="none" viewBox="0 0 24 24" stroke="#2E5B89" stroke-width="2.5" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3m0 0l3 3m-3-3h13M16 9l3 3m0 0l-3 3"/></svg>
+          </div>
+          <span class="pi-lbl pll">Önce</span>
+          <span class="pi-lbl plr">Sonra</span>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Koltuk Takımı</div>
+          <div class="port-item">3+2+1 Köşe Koltuk</div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="araba">
+        <div class="port-img" data-slider>
+          <div class="pi-before" style="background: url('images/araba-öncesi.jpeg') center/cover no-repeat;">
+          </div>
+          <div class="pi-after" style="background: url('images/araba-sonrası.jpeg') center/cover no-repeat; clip-path: inset(0 0 0 50%);">
+          </div>
+          <div class="pi-line"></div>
+          <div class="pi-knob">
+            <svg fill="none" viewBox="0 0 24 24" stroke="#2E5B89" stroke-width="2.5" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3m0 0l3 3m-3-3h13M16 9l3 3m0 0l-3 3"/></svg>
+          </div>
+          <span class="pi-lbl pll">Önce</span>
+          <span class="pi-lbl plr">Sonra</span>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Araba Koltuğu</div>
+          <div class="port-item">Araç İçi Komple</div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="yatak">
+        <div class="port-img" data-slider>
+          <div class="pi-before" style="background: url('images/yatak-öncesi.jpeg') center/cover no-repeat;">
+          </div>
+          <div class="pi-after" style="background: url('images/yatak-sonrası.jpeg') center/cover no-repeat; clip-path: inset(0 0 0 50%);">
+          </div>
+          <div class="pi-line"></div>
+          <div class="pi-knob">
+            <svg fill="none" viewBox="0 0 24 24" stroke="#2E5B89" stroke-width="2.5" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3m0 0l3 3m-3-3h13M16 9l3 3m0 0l-3 3"/></svg>
+          </div>
+          <span class="pi-lbl pll">Önce</span>
+          <span class="pi-lbl plr">Sonra</span>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Yatak</div>
+          <div class="port-item">Çift Kişilik + Baza</div>
+        </div>
+      </div>
+
+      <div class="port-card reveal" data-cat="araba">
+        <div class="port-img" data-slider>
+          <div class="pi-before" style="background: url('images/araba1-öncesi.jpeg') center/cover no-repeat;">
+          </div>
+          <div class="pi-after" style="background: url('images/araba1-sonrası.jpeg') center/cover no-repeat; clip-path: inset(0 0 0 50%);">
+          </div>
+          <div class="pi-line"></div>
+          <div class="pi-knob">
+            <svg fill="none" viewBox="0 0 24 24" stroke="#2E5B89" stroke-width="2.5" width="13" height="13"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l-3 3m0 0l3 3m-3-3h13M16 9l3 3m0 0l-3 3"/></svg>
+          </div>
+          <span class="pi-lbl pll">Önce</span>
+          <span class="pi-lbl plr">Sonra</span>
+        </div>
+        <div class="port-info">
+          <div class="port-cat">Araba Koltuğu</div>
+          <div class="port-item">Araç İçi Komple</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials" id="yorumlar">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Müşteri Yorumları</div>
+      <h2 class="sec-h">Müşterilerimiz Ne Diyor?</h2>
+    </div>
+
+    <div class="test-slider-outer reveal">
+      <button class="test-arrow" id="testPrev" aria-label="Önceki">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+
+      <div class="test-slider-viewport">
+        <div class="test-track" id="testTrack">
+
+          <div class="test-card">
+            <span class="qmark">"</span>
+            <div class="stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="test-text">Koltuk takımımı değiştirmeyi düşünüyordum, o kadar kötü görünüyordu. İki saatte fabrikadan yeni çıkmış gibi oldu. Elinize sağlık.</p>
+            <div class="test-author">
+              <div class="t-av">SA</div>
+              <div>
+                <div class="t-name">Selin Arslan</div>
+                <div class="t-loc">Pamukkale, Denizli</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="test-card dark">
+            <span class="qmark">"</span>
+            <div class="stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="test-text">Arabamın iç döşemesinde çocuklar yüzünden her türlü leke vardı. Çıkmaz dediğim lekeler bile çıktı. Şimdi istedikleri gibi kirletebilirler, çözüm olduğunu biliyorum.</p>
+            <div class="test-author">
+              <div class="t-av">MK</div>
+              <div>
+                <div class="t-name">Murat Kaya</div>
+                <div class="t-loc">Merkezefendi, Denizli</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="test-card">
+            <span class="qmark">"</span>
+            <div class="stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="test-text">Küçük çocuğum olduğu için hijyen konusunda çok titizim. Hangi ürünleri kullandıklarını tek tek anlattılar. Hem sonuç mükemmel hem gönlüm rahat.</p>
+            <div class="test-author">
+              <div class="t-av">AY</div>
+              <div>
+                <div class="t-name">Aslı Yıldız</div>
+                <div class="t-loc">Servergazi, Denizli</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="test-card dark">
+            <span class="qmark">"</span>
+            <div class="stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="test-text">Yemek masası sandalyelerimizde yıllardır birikmiş lekeler vardı. Temizlenebilir mi diye bile sormaktan çekiniyordum. Sordum, geldiler, tertemiz ettiler. Harika bir ekip.</p>
+            <div class="test-author">
+              <div class="t-av">FD</div>
+              <div>
+                <div class="t-name">Fatma Demirci</div>
+                <div class="t-loc">Honaz, Denizli</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="test-card">
+            <span class="qmark">"</span>
+            <div class="stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="test-text">Yatak yıkama hizmetini ilk duyduğumda şüpheyle yaklaştım ama denemek istedim. Sonuç gerçekten etkileyici; yatak neredeyse yeni gibi kokuyor. Her yıl yaptırmayı düşünüyorum.</p>
+            <div class="test-author">
+              <div class="t-av">EÇ</div>
+              <div>
+                <div class="t-name">Emre Çelik</div>
+                <div class="t-loc">Pamukkale, Denizli</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="test-arrow" id="testNext" aria-label="Sonraki">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── BOOKING — CALENDAR ── -->
+<section class="booking" id="rezervasyon">
+  <div class="container">
+    <div class="book-wrap">
+      <div class="book-left reveal">
+        <div class="eyebrow">Online Rezervasyon</div>
+        <h2>Randevunuzu<br>Hemen Alın</h2>
+        <p>Uygun gün ve saati seçin, bilgilerinizi bırakın. 1 saat içinde arayarak onaylayalım.</p>
+        <ul class="feat-list">
+          <li class="feat-item">
+            <div class="feat-chk">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Mobilyalarınızı taşımadan, yerinde hizmet
+          </li>
+          <li class="feat-item">
+            <div class="feat-chk">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Çocuk ve evcil hayvan güvenli ürünler
+          </li>
+          <li class="feat-item">
+            <div class="feat-chk">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            2–4 saat içinde kuruma garantisi
+          </li>
+          <li class="feat-item">
+            <div class="feat-chk">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Ön ödeme yok, ücretsiz iptal
+          </li>
+        </ul>
+      </div>
+
+      <div class="book-card reveal">
+
+        <!-- Step indicator -->
+        <div class="cal-steps">
+          <div class="cal-step active" id="step-ind-1">
+            <div class="cal-step-num">1</div>
+            <span>Gün Seç</span>
+          </div>
+          <div class="cal-step-line" id="line-1"></div>
+          <div class="cal-step" id="step-ind-2">
+            <div class="cal-step-num">2</div>
+            <span>Saat Seç</span>
+          </div>
+          <div class="cal-step-line" id="line-2"></div>
+          <div class="cal-step" id="step-ind-3">
+            <div class="cal-step-num">3</div>
+            <span>Bilgiler</span>
+          </div>
+        </div>
+
+        <!-- STEP 1: Calendar -->
+        <div class="cal-panel active" id="panel-1">
+          <div class="cal-nav">
+            <button class="cal-nav-btn" id="prevMonth" aria-label="Önceki ay">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <span class="cal-month-label" id="calMonthLabel"></span>
+            <button class="cal-nav-btn" id="nextMonth" aria-label="Sonraki ay">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div class="cal-btn-row">
+            <button class="cal-next-btn" id="toStep2" disabled>Devam Et →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Time slots -->
+        <div class="cal-panel" id="panel-2">
+          <div class="cal-selected-summary" id="selectedDateLabel">
+            📅 Seçili tarih
+          </div>
+          <div class="time-slots-title">Uygun saatler</div>
+          <div class="time-slots" id="timeSlots"></div>
+          <div class="cal-btn-row">
+            <button class="cal-back-btn" id="toStep1Back">← Geri</button>
+            <button class="cal-next-btn" id="toStep3" disabled>Devam Et →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Contact form -->
+        <div class="cal-panel" id="panel-3">
+          <div class="cal-selected-summary" id="summaryLabel">
+            📅 Özet
+          </div>
+          <div class="form-row">
+            <div class="form-g">
+              <label>Ad Soyad</label>
+              <input type="text" id="fName" placeholder="Ahmet Yılmaz">
+            </div>
+            <div class="form-g">
+              <label>Telefon</label>
+              <input type="tel" id="fPhone" placeholder="0532 000 00 00">
+            </div>
+          </div>
+          <div class="form-g">
+            <label>Hizmet Türü</label>
+            <select id="fService">
+              <option value="" disabled selected>Bir hizmet seçin...</option>
+              <option>Koltuk Takımı Yıkama</option>
+              <option>Tekli Koltuk Yıkama</option>
+              <option>Araba Koltuğu Yıkama</option>
+              <option>Oturma Takımı Yıkama</option>
+              <option>Yatak Yıkama</option>
+              <option>Sandalye Yıkama</option>
+              <option>Birden Fazla Hizmet</option>
+            </select>
+          </div>
+          <div class="cal-btn-row">
+            <button class="cal-back-btn" id="toStep2Back">← Geri</button>
+            <button class="form-submit" id="submitBtn" style="flex:1;" type="button">Randevu Talebini Gönder</button>
+          </div>
+          <p class="form-note">📞 Hızlı görüşme: <strong>0540 048 20 20</strong><br>WhatsApp ile de ulaşabilirsiniz</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+
+      <div class="footer-brand">
+        <div class="footer-brand-name"><span class="b">Hijyen</span><span class="g">Pro</span></div>
+        <div class="footer-brand-motto">temizlik bizim işimiz</div>
+      </div>
+
+      <div class="footer-contact">
+        <div class="footer-contact-title">İletişim</div>
+        <a href="tel:+905400482020">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.29 21 3 13.71 3 4.99c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.21 2.21z"/>
+          </svg>
+          0540 048 20 20
+        </a>
+        <a href="mailto:iletisim@hijyenpro.com">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          iletisim@hijyenpro.com
+        </a>
+        <a href="https://wa.me/905400482020" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </a>
+        <a href="https://www.instagram.com/hijyenprotemizleme" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Instagram
+        </a>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <span class="fcopy">© 2026 Hijyen Pro. Tüm hakları saklıdır.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAVBAR ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ── MOBILE MENU ──
+const ham = document.getElementById('ham');
+const mob = document.getElementById('mob');
+ham.addEventListener('click', () => mob.classList.toggle('open'));
+function closeMob() { mob.classList.remove('open'); }
+
+// ── BEFORE/AFTER SLIDER ──
+function initSlider(wrap, afterEl, lineEl, knobEl) {
+  let drag = false;
+  function setPos(pct) {
+    pct = Math.max(4, Math.min(96, pct));
+    afterEl.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    lineEl.style.left = pct + '%';
+    knobEl.style.left = pct + '%';
+  }
+  function getPct(e) {
+    const touch = e.touches ? e.touches[0] : e;
+    const r = wrap.getBoundingClientRect();
+    return ((touch.clientX - r.left) / r.width) * 100;
+  }
+  wrap.addEventListener('mousedown', e => { drag = true; setPos(getPct(e)); e.preventDefault(); });
+  window.addEventListener('mousemove', e => { if (drag) setPos(getPct(e)); });
+  window.addEventListener('mouseup', () => { drag = false; });
+  wrap.addEventListener('touchstart', e => { drag = true; setPos(getPct(e)); }, { passive: true });
+  window.addEventListener('touchmove', e => { if (drag) setPos(getPct(e)); }, { passive: true });
+  window.addEventListener('touchend', () => { drag = false; });
+}
+document.querySelectorAll('[data-slider]').forEach(wrap => {
+  initSlider(wrap, wrap.querySelector('.pi-after'), wrap.querySelector('.pi-line'), wrap.querySelector('.pi-knob'));
+});
+
+// ── SCROLL REVEAL ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── TESTIMONIAL SLIDER ──
+(function() {
+  const track = document.getElementById('testTrack');
+  const prevBtn = document.getElementById('testPrev');
+  const nextBtn = document.getElementById('testNext');
+  const cards = track.querySelectorAll('.test-card');
+  const total = cards.length;
+  const visible = 3;
+  const maxIndex = total - visible; // 2
+  let current = 0;
+
+  function cardWidth() {
+    return cards[0].getBoundingClientRect().width + 22; // card + gap
+  }
+
+  function update() {
+    track.style.transform = `translateX(-${current * cardWidth()}px)`;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === maxIndex;
+  }
+
+  prevBtn.addEventListener('click', () => { if (current > 0) { current--; update(); } });
+  nextBtn.addEventListener('click', () => { if (current < maxIndex) { current++; update(); } });
+
+  window.addEventListener('resize', () => update());
+  update();
+})();
+
+// ── PORTFOLIO FILTER ──
+document.querySelectorAll('.port-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.port-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('#portGrid .port-card').forEach(card => {
+      card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
+    });
+  });
+});
+
+// ── CALENDAR BOOKING ──
+const TR_MONTHS = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+const TR_DAYS   = ['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
+
+function isAvailable(date) {
+  return date.getDay() !== 0; // Sundays never, all other days always
+}
+
+function getSlots() {
+  return ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00'];
+}
+
+let calYear, calMonth, selectedDate = null, selectedTime = null;
+let bookedSlots = [];
+
+function toDateStr(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+async function loadAvailability() {
+  const monthStr = `${calYear}-${String(calMonth+1).padStart(2,'0')}`;
+  try {
+    const res  = await fetch(`/api/availability?month=${monthStr}`);
+    const data = await res.json();
+    bookedSlots = data.booked || [];
+  } catch(e) {
+    bookedSlots = [];
+  }
+}
+
+const today = new Date();
+today.setHours(0,0,0,0);
+calYear  = today.getFullYear();
+calMonth = today.getMonth();
+
+function renderCal() {
+  document.getElementById('calMonthLabel').textContent = TR_MONTHS[calMonth] + ' ' + calYear;
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  // Day-of-week headers (Mon–Sun)
+  TR_DAYS.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-dow'; el.textContent = d; grid.appendChild(el);
+  });
+
+  const first = new Date(calYear, calMonth, 1);
+  // JS: 0=Sun … shift so Mon=0
+  let startDow = (first.getDay() + 6) % 7;
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  for (let i = 0; i < startDow; i++) {
+    const el = document.createElement('div'); el.className = 'cal-day empty'; grid.appendChild(el);
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(calYear, calMonth, day);
+    const el = document.createElement('div');
+    el.className = 'cal-day';
+    el.textContent = day;
+
+    if (date < today) {
+      el.classList.add('past');
+    } else if (date.getTime() === today.getTime()) {
+      el.classList.add('today');
+      if (isAvailable(date)) el.classList.add('available');
+    } else if (isAvailable(date)) {
+      el.classList.add('available');
+    }
+
+    if (selectedDate && date.toDateString() === selectedDate.toDateString()) {
+      el.classList.add('selected');
+    }
+
+    if (el.classList.contains('available')) {
+      el.addEventListener('click', () => {
+        selectedDate = date; selectedTime = null;
+        document.getElementById('toStep2').disabled = false;
+        renderCal();
+      });
+    }
+
+    grid.appendChild(el);
+  }
+}
+
+function renderTimeSlots() {
+  const container = document.getElementById('timeSlots');
+  container.innerHTML = '';
+  if (!selectedDate) return;
+  const dateStr = toDateStr(selectedDate);
+  const slots   = getSlots();
+  slots.forEach(t => {
+    const booked = bookedSlots.some(s => s.date === dateStr && s.time === t);
+    const el = document.createElement('div');
+    el.className = 'time-slot'
+      + (t === selectedTime ? ' selected' : '')
+      + (booked ? ' unavailable' : '');
+    el.textContent = booked ? t + ' ✕' : t;
+    if (!booked) {
+      el.addEventListener('click', () => {
+        selectedTime = t;
+        document.getElementById('toStep3').disabled = false;
+        renderTimeSlots();
+      });
+    }
+    container.appendChild(el);
+  });
+}
+
+function formatDate(d) {
+  return d.getDate() + ' ' + TR_MONTHS[d.getMonth()] + ' ' + d.getFullYear() + ', ' + TR_DAYS[(d.getDay()+6)%7];
+}
+
+function goToStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('panel-' + i).classList.toggle('active', i === n);
+    const si = document.getElementById('step-ind-' + i);
+    si.classList.remove('active','done');
+    if (i === n) si.classList.add('active');
+    if (i < n)  si.classList.add('done');
+    if (i < 3) {
+      document.getElementById('line-' + i).classList.toggle('done', i < n);
+    }
+  });
+}
+
+// Nav buttons
+document.getElementById('prevMonth').addEventListener('click', () => {
+  calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; }
+  loadAvailability().then(renderCal);
+});
+document.getElementById('nextMonth').addEventListener('click', () => {
+  calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; }
+  loadAvailability().then(renderCal);
+});
+
+document.getElementById('toStep2').addEventListener('click', () => {
+  document.getElementById('selectedDateLabel').textContent = '📅 ' + formatDate(selectedDate);
+  renderTimeSlots();
+  goToStep(2);
+});
+document.getElementById('toStep1Back').addEventListener('click', () => goToStep(1));
+
+document.getElementById('toStep3').addEventListener('click', () => {
+  document.getElementById('summaryLabel').textContent = '📅 ' + formatDate(selectedDate) + ' · ' + selectedTime;
+  goToStep(3);
+});
+document.getElementById('toStep2Back').addEventListener('click', () => goToStep(2));
+
+document.getElementById('submitBtn').addEventListener('click', async function() {
+  const name    = document.getElementById('fName').value.trim();
+  const phone   = document.getElementById('fPhone').value.trim();
+  const service = document.getElementById('fService').value;
+
+  if (!name || !phone || !service) {
+    alert('Lütfen tüm alanları doldurun.');
+    return;
+  }
+
+  this.textContent = 'Gönderiliyor...';
+  this.disabled = true;
+
+  try {
+    const res  = await fetch('/api/book', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ name, phone, service, date: toDateStr(selectedDate), time: selectedTime })
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      this.textContent = '✓ Talebiniz alındı!';
+      this.style.background = 'var(--teal)';
+      setTimeout(() => window.open(data.waUrl, '_blank'), 500);
+    } else {
+      this.textContent = 'Hata oluştu, tekrar deneyin.';
+      this.style.background = '#e53e3e';
+      this.disabled = false;
+    }
+  } catch(e) {
+    this.textContent = 'Bağlantı hatası, tekrar deneyin.';
+    this.style.background = '#e53e3e';
+    this.disabled = false;
+  }
+});
+
+// Init
+loadAvailability().then(renderCal);
+</script>
+</body>
+</html>
