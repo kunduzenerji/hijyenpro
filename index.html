@@ -1295,14 +1295,19 @@ function renderTimeSlots() {
   if (!selectedDate) return;
   const dateStr = toDateStr(selectedDate);
   const slots   = getSlots();
+  const now     = new Date();
+  const isToday = toDateStr(now) === dateStr;
   slots.forEach(t => {
     const booked = bookedSlots.some(s => s.date === dateStr && s.time === t);
+    const [slotH, slotM] = t.split(':').map(Number);
+    const isPast = isToday && (slotH < now.getHours() || (slotH === now.getHours() && slotM <= now.getMinutes()));
+    const unavailable = booked || isPast;
     const el = document.createElement('div');
     el.className = 'time-slot'
       + (t === selectedTime ? ' selected' : '')
-      + (booked ? ' unavailable' : '');
+      + (unavailable ? ' unavailable' : '');
     el.textContent = booked ? t + ' ✕' : t;
-    if (!booked) {
+    if (!unavailable) {
       el.addEventListener('click', () => {
         selectedTime = t;
         document.getElementById('toStep3').disabled = false;

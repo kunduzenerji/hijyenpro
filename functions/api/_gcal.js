@@ -72,13 +72,24 @@ export async function createCalendarEvent(env, reservation, durationHours) {
   };
 
   const calId = encodeURIComponent(env.GOOGLE_CALENDAR_ID);
-  await fetch(`https://www.googleapis.com/calendar/v3/calendars/${calId}/events`, {
+  const res = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${calId}/events`, {
     method:  'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
       'Content-Type':  'application/json'
     },
     body: JSON.stringify(event)
+  });
+  const data = await res.json();
+  return data.id;
+}
+
+export async function deleteCalendarEvent(env, eventId) {
+  const token = await getGoogleAccessToken(env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  const calId = encodeURIComponent(env.GOOGLE_CALENDAR_ID);
+  await fetch(`https://www.googleapis.com/calendar/v3/calendars/${calId}/events/${eventId}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': `Bearer ${token}` }
   });
 }
 

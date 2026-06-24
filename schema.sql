@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS reservations (
   date           TEXT    NOT NULL,
   time           TEXT    NOT NULL,
   duration_hours INTEGER,
+  gcal_event_id  TEXT,
   status         TEXT    NOT NULL DEFAULT 'pending',
   created_at     TEXT    NOT NULL DEFAULT (datetime('now'))
 );

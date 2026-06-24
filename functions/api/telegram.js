@@ -1,4 +1,4 @@
-import { createCalendarEvent } from './_gcal.js';
+import { createCalendarEvent, deleteCalendarEvent } from './_gcal.js';
 
 export async function onRequestGet() {
   return new Response('ok');
@@ -59,9 +59,12 @@ export async function onRequestPost({ request, env }) {
       // Create Google Calendar event
       let calMsg = '📅 Google Takvime eklendi.';
       try {
-        await createCalendarEvent(env, { ...row, id }, hours);
+        const eventId = await createCalendarEvent(env, { ...row, id }, hours);
+        if (eventId) {
+          await env.DB.prepare(`UPDATE reservations SET gcal_event_id = ? WHERE id = ?`).bind(eventId, id).run();
+        }
       } catch (gcalErr) {
-        calMsg = `⚠️ Takvim hatası: ${gcalErr.message}`;
+        calMsg = `⚠️ Takvim hatasi: ${gcalErr.message}`;
       }
 
       await sendTelegram(env.TELEGRAM_TOKEN, chatId,
@@ -82,6 +85,14 @@ export async function onRequestPost({ request, env }) {
       }
 
       await env.DB.prepare(`UPDATE reservations SET status = 'cancelled' WHERE id = ?`).bind(id).run();
+
+      if (row.gcal_event_id) {
+        try {
+          await deleteCalendarEvent(env, row.gcal_event_id);
+        } catch (gcalErr) {
+          console.error('Calendar delete failed:', gcalErr.message);
+        }
+      }
 
       await sendTelegram(env.TELEGRAM_TOKEN, chatId,
         `🚫 *Rezervasyon #${id} iptal edildi.*\n👤 ${row.name}\n📅 ${row.date} · ${row.time}`
