@@ -22,9 +22,11 @@ export async function onRequestGet({ request, env }) {
       const [h, min] = r.time.split(':').map(Number);
       const hours = r.duration_hours || 1;
       for (let i = 0; i < hours; i++) {
+        const slotH = h + i;
+        if (slotH > 23) break;
         dbBooked.push({
           date: r.date,
-          time: `${String(h + i).padStart(2, '0')}:${String(min).padStart(2, '0')}`
+          time: `${String(slotH).padStart(2, '0')}:${String(min).padStart(2, '0')}`
         });
       }
     }

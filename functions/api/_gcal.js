@@ -126,7 +126,9 @@ export async function getCalendarBookedSlots(env, month) {
     const timeStr  = `${String(h).padStart(2,'0')}:${String(startDt.getUTCMinutes()).padStart(2,'0')}`;
 
     for (let i = 0; i < hours; i++) {
-      booked.push({ date: dateStr, time: `${String(h + i).padStart(2,'0')}:${String(startDt.getUTCMinutes()).padStart(2,'0')}` });
+      const slotH = h + i;
+      if (slotH > 23) break;
+      booked.push({ date: dateStr, time: `${String(slotH).padStart(2,'0')}:${String(startDt.getUTCMinutes()).padStart(2,'0')}` });
     }
   }
 

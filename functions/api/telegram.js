@@ -14,6 +14,9 @@ async function sendTelegram(token, chatId, text) {
 
 export async function onRequestPost({ request, env }) {
   try {
+    const secret = request.headers.get('X-Telegram-Bot-Api-Secret-Token');
+    if (secret !== env.TELEGRAM_WEBHOOK_SECRET) return new Response('ok');
+
     const update = await request.json();
     const msg    = update?.message;
     if (!msg) return new Response('ok');
