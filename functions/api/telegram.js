@@ -67,8 +67,10 @@ export async function onRequestPost({ request, env }) {
         calMsg = `⚠️ Takvim hatasi: ${gcalErr.message}`;
       }
 
+      const [ky, km, kd] = row.date.split('-');
+      const kDisplayDate = `${parseInt(kd)}/${parseInt(km)}/${ky}`;
       await sendTelegram(env.TELEGRAM_TOKEN, chatId,
-        `✅ *Rezervasyon #${id} onaylandı!*\n👤 ${row.name}\n📅 ${row.date} · ${row.time} (${hours} saat)\n🛋️ ${row.service}\n${calMsg}`
+        `✅ *Rezervasyon #${id} onaylandı!*\n👤 ${row.name}\n📅 ${kDisplayDate} · ${row.time} (${hours} saat)\n🛋️ ${row.service}\n${calMsg}`
       );
       return new Response('ok');
     }
@@ -94,8 +96,10 @@ export async function onRequestPost({ request, env }) {
         }
       }
 
+      const [iy, im, idd] = row.date.split('-');
+      const iDisplayDate = `${parseInt(idd)}/${parseInt(im)}/${iy}`;
       await sendTelegram(env.TELEGRAM_TOKEN, chatId,
-        `🚫 *Rezervasyon #${id} iptal edildi.*\n👤 ${row.name}\n📅 ${row.date} · ${row.time}`
+        `🚫 *Rezervasyon #${id} iptal edildi.*\n👤 ${row.name}\n📅 ${iDisplayDate} · ${row.time}`
       );
       return new Response('ok');
     }

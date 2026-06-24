@@ -17,6 +17,10 @@ export async function onRequestPost({ request, env }) {
 
     const id = meta.last_row_id;
 
+    // Format date as D/M/Y for display
+    const [dy, dm, dd] = date.split('-');
+    const displayDate = `${parseInt(dd)}/${parseInt(dm)}/${dy}`;
+
     // Format customer phone for WhatsApp deep link (for company reference in Telegram)
     const digits = phone.replace(/\D/g, '');
     const waCustomer = digits.startsWith('0') ? '90' + digits.slice(1) : digits;
@@ -24,7 +28,7 @@ export async function onRequestPost({ request, env }) {
     const tgText = [
       `📋 *Yeni Rezervasyon #${id}*`,
       `👤 ${name}`,
-      `📅 ${date} · ${time}`,
+      `📅 ${displayDate} · ${time}`,
       `🛋️ ${service}`,
       `📍 ${ilce} / ${adres}`,
       `📞 [${phone}](https://wa.me/${waCustomer})`,
